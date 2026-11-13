@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff9f8">
+  <meta name="description" content="Apresentação educativa sobre Webwriting: conceito, técnicas, exemplos, acessibilidade e atividade interativa. Um site para aprender a escrever melhor na internet.">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Webwriting — Escrever para ser lido">
+  <meta property="og:description" content="Apresentação sobre escrita para a web, com exemplos, boas práticas, acessibilidade e quiz.">
+  <title>Webwriting — Escrever para ser lido | Apresentação</title>
+  <style>
+    :root { color-scheme:light; --bg:#fff9f8; --bg-soft:#fff1ef; --surface:#ffffff; --surface-alt:#fff4f1; --text:#301d22; --muted:#735c63; --line:#ead7d7; --red:#c71c3a; --red-dark:#910f2b; --action:#bd1936; --action-hover:#8c1029; --red-pale:#fbe2e6; --rose:#f86c79; --shadow:0 24px 65px rgba(100,27,48,.09); --hero-ink:#ffffff; --focus:#d61441; --radius:24px; }
+    html[data-theme="dark"] {color-scheme:dark; --bg:#120e12; --bg-soft:#1d141a; --surface:#231820; --surface-alt:#291921; --text:#f9eef0; --muted:#c9aeb7; --line:#48303b; --red:#ff5770; --red-dark:#ff8091; --action:#b51c3b; --action-hover:#8d122d; --red-pale:#3a202a; --rose:#ff8c99; --shadow:0 24px 75px rgba(0,0,0,.28); --focus:#ff98aa; }
+    *,*::before,*::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:105px; }
+    body { margin:0; font-family:Inter, ui-sans-serif, -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; color:var(--text); background:var(--bg); line-height:1.58; -webkit-font-smoothing:antialiased; }
+    button, input {font:inherit;} button {cursor:pointer;} a {color:inherit;} :focus-visible {outline:3px solid var(--focus);outline-offset:4px;} ::selection{background:#f47c92;color:#201016;}
+    .skip {position:fixed;z-index:100;top:-100px;left:14px;padding:11px 18px;background:var(--surface);border:2px solid var(--red);border-radius:12px;} .skip:focus{top:12px;}
+    .container {width:min(1160px,calc(100% - 64px));margin-inline:auto;} .eyebrow {display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:850;color:var(--red);margin:0 0 18px;}.eyebrow::before{content:"";width:20px;height:2px;background:currentColor;} .section-heading {font-size:clamp(2.15rem,4vw,4.15rem);font-weight:850;line-height:1.08;letter-spacing:-.055em;margin:0 0 20px;max-width:850px;} .section-intro {font-size:clamp(1.06rem,1.7vw,1.25rem);color:var(--muted);max-width:750px;margin:0 0 32px;} .accent {color:var(--red);} .muted{color:var(--muted);}
+    .site-header {position:sticky;top:0;z-index:50;height:76px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
+    .header-row {display:flex;align-items:center;gap:20px;justify-content:space-between;} .brand {display:inline-flex;align-items:center;gap:10px;text-decoration:none;white-space:nowrap;font-weight:900;letter-spacing:-.045em;font-size:1.17rem;} .brand-mark {width:39px;height:39px;display:grid;place-items:center;background:linear-gradient(145deg,#ff5f70,#ab1332);color:#fff;border-radius:12px;box-shadow:0 7px 17px #a3143429;font-size:1.15rem;} .brand small {font-size:.65rem;letter-spacing:.14em;color:var(--red);margin-left:3px;}
+    .desktop-nav {display:flex;align-items:center;gap:clamp(11px,1.8vw,23px);} .desktop-nav a {text-decoration:none;color:var(--muted);font-size:.86rem;font-weight:720;transition:color .2s;} .desktop-nav a:hover,.desktop-nav a[aria-current="location"]{color:var(--red);} .header-actions {display:flex;align-items:center;gap:8px;}
+    .icon-btn {background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:13px;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:8px 13px;font-size:.82rem;font-weight:800;} .icon-btn:hover{border-color:var(--red);color:var(--red);} .icon-btn svg {width:18px;height:18px;flex:none;}.primary-btn {background:var(--action);border:1px solid transparent;color:#fff;padding:12px 19px;display:inline-flex;align-items:center;gap:9px;font-weight:820;text-decoration:none;border-radius:13px;box-shadow:0 8px 24px #c51b3c30;justify-content:center;}.primary-btn:hover{background:var(--action-hover);color:#fff;}.secondary-btn{background:var(--surface);border:1px solid var(--line);color:var(--text);padding:12px 18px;display:inline-flex;gap:9px;align-items:center;text-decoration:none;border-radius:13px;font-weight:800;justify-content:center;}.secondary-btn:hover{border-color:var(--red);color:var(--red);} .mobile-toggle{display:none;} .mobile-nav{display:none;}
+    .read-progress {position:fixed;z-index:51;top:76px;left:0;height:3px;width:0;background:linear-gradient(90deg,#e83c55,#ff8f9d);pointer-events:none;transition:width .15s linear;}
+    .slide {position:relative;padding:100px 0;scroll-margin-top:76px;isolation:isolate;} .slide:nth-of-type(even){background:var(--bg-soft);} .slide-head{margin-bottom:36px;} .two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;} .card {background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:29px;box-shadow:var(--shadow);} .card h3 {font-size:1.18rem;line-height:1.25;letter-spacing:-.025em;margin:11px 0 8px;} .card p {margin:0;color:var(--muted);} .tiny-label {font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:850;color:var(--red);}
+    .hero {padding:0;overflow:hidden;background:radial-gradient(circle at 78% 30%,#bb2446 0,transparent 30%),linear-gradient(112deg,#260e1c 0%,#6e142b 52%,#9e1e3d 100%)!important;color:var(--hero-ink);min-height:min(720px,calc(100svh - 76px));display:flex;align-items:center;} .hero::after {content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffff26 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(90deg,transparent 15%,#000 95%);opacity:.6;z-index:-1;} .hero-inner {display:grid;grid-template-columns:1.13fr .87fr;gap:45px;align-items:center;padding-block:105px;} .hero .eyebrow{color:#ffacb7;} .hero-kicker{display:inline-flex;gap:9px;align-items:center;border:1px solid #ffffff50;border-radius:100px;padding:7px 13px;font-size:.76rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;background:#ffffff0b;margin-bottom:25px;} .hero-kicker span {height:7px;width:7px;background:#ff9dab;border-radius:50%;} h1 {font-size:clamp(3.8rem,7.25vw,7.4rem);line-height:.98;letter-spacing:-.085em;margin:0 0 25px;font-weight:900;} .hero h1 em {font-style:normal;color:#ffabb6;}.hero-description{font-size:1.22rem;color:#f3ccd4;max-width:575px;margin:0 0 32px;line-height:1.65;} .hero-actions{display:flex;gap:12px;flex-wrap:wrap;} .hero .primary-btn {background:#fff;color:#8d1831;box-shadow:none;} .hero .primary-btn:hover{background:#ffe0e5;color:#6e142b;}.hero .secondary-btn{border-color:#ffffff6b;background:#ffffff0c;color:#fff;}.hero-note{font-size:.83rem;color:#e9aab9;margin-top:22px;}
+    .visual-window{background:#fffafa;border:1px solid #ffffff88;border-radius:25px;color:#3d1b27;transform:rotate(2.5deg);box-shadow:0 32px 90px #0d031362;overflow:hidden;position:relative;}.window-bar{height:46px;background:#fff4f4;border-bottom:1px solid #eed7dc;display:flex;align-items:center;gap:7px;padding:0 20px;}.dot{height:9px;width:9px;border-radius:50%;background:#f35a78;}.dot:nth-child(2){background:#f8bc73;}.dot:nth-child(3){background:#83c9a3;}.window-domain{font-size:.69rem;font-weight:750;margin-left:auto;color:#986e7c;}.window-content{padding:27px;} .window-tag{color:#ae2143;font-size:.67rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:11px;}.bad-title{font-size:.96rem;font-weight:800;color:#af8992;text-decoration:line-through;text-decoration-color:#bc3353;line-height:1.5;margin:0 0 19px;}.change-arrow{color:#c62b4d;font-size:1.5rem;font-weight:900;margin:0 0 9px;}.good-title{font-size:clamp(1.45rem,2.5vw,2.2rem);letter-spacing:-.055em;line-height:1.15;font-weight:900;margin:0 0 13px;color:#4b1a2a;}.good-title strong{color:#c12748;}.good-p{color:#79606a;font-size:.9rem;margin:0 0 17px;}.pill-row{display:flex;flex-wrap:wrap;gap:7px;}.pill-row span{border:1px solid #f0d2d9;border-radius:8px;background:#fff1f4;padding:5px 9px;font-size:.73rem;font-weight:750;color:#9f2946;}.visual-sticker{position:absolute;right:-10px;bottom:17px;background:#ffb3be;border-radius:12px;box-shadow:0 9px 16px #3c011b50;padding:10px 16px;color:#752039;font-weight:900;font-size:.77rem;transform:rotate(-6deg);}
+    .mini-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:30px;}.mini-stat {border:1px solid var(--line);border-radius:16px;padding:19px;background:var(--surface);}.mini-stat strong{display:block;color:var(--red);font-size:1.5rem;letter-spacing:-.055em;line-height:1.2;}.mini-stat span{font-size:.86rem;color:var(--muted);}
+    .quote-panel {border-radius:var(--radius);background:linear-gradient(145deg,#83152e,#c82347);padding:40px;color:#fff;min-height:330px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}.quote-panel:before{content:'“';position:absolute;top:-93px;right:2px;font-family:Georgia,serif;font-size:21rem;color:#ffffff15;}.quote-panel blockquote{font-size:clamp(1.65rem,2.7vw,2.4rem);line-height:1.25;letter-spacing:-.04em;font-weight:790;margin:0;position:relative;}.quote-panel p{margin:22px 0 0;color:#ffd1d9;font-size:.9rem;position:relative;}
+    .reading-path {background:var(--surface);padding:30px;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);} .mock-screen{border-radius:18px;border:1px solid var(--line);padding:22px;background:var(--surface-alt);}.mock-line{height:11px;background:var(--line);border-radius:20px;margin-bottom:12px;width:94%;}.mock-line.highlight{background:var(--red);height:17px;width:70%;}.mock-line.medium{width:72%;}.mock-line.short{width:40%;}.mock-line.indent{width:85%;}.mock-screen .mock-block{border-radius:8px;background:color-mix(in srgb, var(--red) 10%, transparent);padding:10px 10px 1px;margin:8px -10px 14px;}.reading-foot{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:15px;color:var(--muted);font-size:.85rem;}
+    .pillar-grid {display:grid;grid-template-columns:repeat(5,1fr);gap:13px;}.pillar{padding:26px 19px;background:var(--surface);border:1px solid var(--line);border-radius:20px;min-height:250px;transition:transform .2s,border-color .2s;}.pillar:hover{transform:translateY(-4px);border-color:var(--red);}.pillar .number{font-size:2.3rem;color:var(--red);line-height:1;font-weight:900;letter-spacing:-.08em;margin-bottom:33px;display:block;}.pillar h3{font-size:1.15rem;line-height:1.18;margin:0 0 12px;letter-spacing:-.025em;}.pillar p{font-size:.89rem;line-height:1.5;color:var(--muted);margin:0;}
+    .pyramid{display:grid;gap:10px;padding:12px 0;}.tier{padding:21px 24px;border-radius:15px;background:var(--surface);border:1px solid var(--line);display:flex;gap:19px;align-items:center;}.tier .tier-number{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--red-pale);color:var(--red);font-size:1.05rem;font-weight:900;flex:none;}.tier strong{display:block;font-size:1.06rem;}.tier span{color:var(--muted);font-size:.91rem;}.tier:first-child{border-color:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--surface));}.example-note {background:var(--surface);border-left:4px solid var(--red);padding:20px 23px;border-radius:0 16px 16px 0;margin-top:20px;color:var(--muted);}.example-note strong{color:var(--text);}
+    .practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;}.practice{padding:27px;border:1px solid var(--line);border-radius:20px;background:var(--surface);}.practice-ico{width:48px;height:48px;background:var(--red-pale);border-radius:15px;display:grid;place-items:center;font-size:1.3rem;color:var(--red);font-weight:900;}.practice h3{font-size:1.16rem;line-height:1.3;margin:17px 0 10px;}.practice p{font-size:.94rem;margin:0;color:var(--muted);}
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px;}.compare-card{background:var(--surface);border:1px solid var(--line);border-radius:23px;overflow:hidden;box-shadow:var(--shadow);}.compare-top{padding:16px 24px;display:flex;align-items:center;gap:9px;font-size:.82rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--line);}.compare-top i{width:8px;height:8px;border-radius:50%;background:currentColor;}.compare-bad .compare-top{color:#a25656;background:color-mix(in srgb,#ff9292 9%,var(--surface));}.compare-good .compare-top{color:var(--red);background:var(--red-pale);}.compare-body{padding:26px;}.compare-body h3{font-size:1.35rem;line-height:1.25;margin:0 0 16px;letter-spacing:-.02em;}.compare-body p{font-size:1rem;line-height:1.8;color:var(--muted);margin:0 0 12px;}.compare-body ul{margin:9px 0 0;padding-left:20px;}.compare-body li{margin:6px 0;}.compare-cta{display:inline-block;border-radius:9px;background:var(--action);color:#fff;text-decoration:none;font-weight:800;padding:10px 14px;margin-top:14px;}.compare-cta:hover{background:var(--action-hover);}.compare-takeaway{margin-top:20px;color:var(--muted);}.compare-takeaway b{color:var(--text);}
+    .access-list{display:grid;gap:13px;}.access-item{display:flex;align-items:flex-start;gap:16px;padding:19px 20px;background:var(--surface);border:1px solid var(--line);border-radius:15px;}.check-icon{height:30px;width:30px;flex:none;display:grid;place-items:center;border-radius:9px;background:var(--red-pale);color:var(--red);font-weight:900;}.access-item strong{display:block;line-height:1.25;margin-bottom:5px;}.access-item span{color:var(--muted);font-size:.94rem;}.access-art{padding:31px;background:var(--surface);border:1px solid var(--line);border-radius:24px;}.access-art .label{color:var(--red);font-weight:900;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;}.access-art .fake-h{font-size:1.95rem;line-height:1.14;font-weight:900;margin:12px 0 16px;letter-spacing:-.045em;}.access-art .fake-h span{color:var(--red);}.access-art p{color:var(--muted);}.access-art a{color:var(--red);font-weight:850;text-underline-offset:4px;}.access-art .helper{font-size:.78rem;border-top:1px solid var(--line);padding-top:15px;margin-top:21px;}
+    .connection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}.connection-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;padding:30px;background:var(--surface);}.connection-card:after{content:"";width:120px;height:120px;background:var(--red-pale);border-radius:50%;position:absolute;top:-55px;right:-55px;}.connection-card h3{font-size:1.7rem;letter-spacing:-.055em;margin:15px 0 9px;}.connection-card p{color:var(--muted);margin:0 0 15px;}.connection-card small{font-weight:780;color:var(--red);}.connection-band{margin-top:20px;border-radius:18px;background:#791b32;color:#fff;padding:22px 26px;text-align:center;font-weight:850;font-size:clamp(1.1rem,2vw,1.5rem);letter-spacing:-.025em;}
+    .errors-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}.error-item{display:flex;gap:16px;align-items:flex-start;padding:23px;border:1px solid var(--line);border-radius:18px;background:var(--surface);}.error-icon{width:35px;height:35px;display:grid;place-items:center;flex:none;border-radius:50%;background:var(--red-pale);color:var(--red);font-weight:900;}.error-item strong{display:block;margin-bottom:5px;font-size:1.02rem;}.error-item p{margin:0;color:var(--muted);font-size:.94rem;}
+    .quiz-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:24px;align-items:stretch;}.quiz-panel{background:var(--surface);border-radius:24px;border:1px solid var(--line);padding:32px;box-shadow:var(--shadow);}.quiz-top{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);font-size:.83rem;font-weight:800;}.quiz-track{height:6px;background:var(--line);overflow:hidden;border-radius:99px;margin:17px 0 30px;}.quiz-track i{height:100%;width:33.333%;background:var(--red);display:block;transition:width .25s;}.quiz-panel h3{font-size:clamp(1.3rem,2.3vw,1.95rem);margin:0 0 21px;line-height:1.3;letter-spacing:-.035em;}.quiz-options{display:grid;gap:10px;}.quiz-option{text-align:left;padding:13px 16px;background:var(--surface-alt);color:var(--text);border:1px solid var(--line);border-radius:12px;font-weight:660;}.quiz-option:hover:not(:disabled){border-color:var(--red);}.quiz-option.correct{border-color:#249365;background:color-mix(in srgb,#249365 12%,var(--surface));}.quiz-option.wrong{border-color:#d64a4a;background:color-mix(in srgb,#d64a4a 10%,var(--surface));}.quiz-option:disabled{cursor:default;opacity:1;}.quiz-feedback{min-height:55px;color:var(--muted);margin:17px 0 7px;}.quiz-feedback strong{color:var(--text);}.quiz-result{display:none;}.quiz-result.show{display:block;}.quiz-result strong{color:var(--red);font-size:3.5rem;line-height:1;letter-spacing:-.08em;}.quiz-next{margin-top:10px;}.quiz-side{background:linear-gradient(145deg,#791a35,#b82044);color:white;border-radius:24px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:400px;}.quiz-side .symbol{font-size:4rem;font-weight:900;letter-spacing:-.12em;color:#ffc4cf;}.quiz-side h3{font-size:1.8rem;line-height:1.1;letter-spacing:-.06em;margin:16px 0;}.quiz-side p{color:#ffd1da;margin:0;}.quiz-side small{color:#ffbac7;}
+    .final-panel{background:linear-gradient(120deg,#570e24,#a31e3e);padding:clamp(30px,6vw,70px);border-radius:30px;color:white;position:relative;overflow:hidden;}.final-panel:after{content:"W";position:absolute;right:-2%;bottom:-42%;color:#ffffff0f;font-weight:900;line-height:1;font-size:min(50vw,590px);pointer-events:none;}.final-panel .eyebrow{color:#ffb2c0;}.final-panel h2{font-size:clamp(2.6rem,5vw,5.5rem);line-height:1.05;letter-spacing:-.07em;margin:0 0 23px;max-width:880px;position:relative;}.final-panel p{font-size:1.16rem;line-height:1.7;max-width:680px;color:#f8ced8;position:relative;}.final-panel .primary-btn{position:relative;background:#fff;color:#8d1933;}.final-panel .primary-btn:hover{background:#ffe0e5;}.closing-tags{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 30px;position:relative;}.closing-tags span{padding:7px 11px;background:#ffffff18;border:1px solid #ffffff44;border-radius:99px;font-size:.84rem;font-weight:780;}
+    .speaker-plan{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}.speaker{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;}.speaker small{color:var(--red);font-weight:850;letter-spacing:.09em;text-transform:uppercase;}.speaker strong{display:block;margin:7px 0;line-height:1.3;}.speaker p{margin:0;color:var(--muted);font-size:.87rem;}
+    .speaker-note {margin-top:29px;padding:14px 18px;border:1px dashed var(--line);border-radius:13px;max-width:950px;color:var(--muted);background:color-mix(in srgb,var(--surface) 75%,transparent);}.speaker-note summary{cursor:pointer;font-size:.85rem;font-weight:800;color:var(--text);}.speaker-note p{margin:10px 0 0;font-size:.9rem;}
+    .site-footer{border-top:1px solid var(--line);padding:47px 0 55px;background:var(--surface);}.footer-row{display:grid;grid-template-columns:.85fr 1.15fr;gap:34px;}.footer-row h2{font-size:1.15rem;letter-spacing:-.025em;margin:0 0 9px;}.footer-row p{font-size:.9rem;color:var(--muted);margin:0;}.sources{display:grid;gap:8px;}.sources a{font-size:.89rem;color:var(--red);text-underline-offset:3px;}.footer-end{display:flex;gap:12px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);margin-top:30px;padding-top:22px;color:var(--muted);font-size:.8rem;}
+    .deck-controls{display:none;position:fixed;z-index:70;bottom:16px;left:50%;transform:translateX(-50%);align-items:center;gap:10px;background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);border-radius:17px;padding:9px;box-shadow:0 15px 40px #0003;backdrop-filter:blur(12px);max-width:calc(100% - 24px);}.deck-controls button{border:1px solid var(--line);background:var(--surface-alt);color:var(--text);border-radius:11px;padding:9px 12px;min-width:56px;font-weight:850;white-space:nowrap;}.deck-controls button:hover:not(:disabled){border-color:var(--red);color:var(--red);}.deck-controls button:disabled{opacity:.4;cursor:not-allowed;}.deck-counter{padding:0 7px;font-size:.86rem;font-weight:900;color:var(--text);white-space:nowrap;}
+    body.presenting{overflow:hidden;} body.presenting .site-header{position:relative;} body.presenting main{height:calc(100dvh - 76px);overflow:hidden;} body.presenting .slide {height:calc(100dvh - 76px);min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:55px 0 110px;scroll-margin-top:0;} body.presenting .hero{min-height:0;display:flex;padding:0;} body.presenting .hero-inner{padding-block:35px 90px;} body.presenting .slide:not(.hero)>.container{margin-block:auto;} body.presenting .deck-controls{display:flex;} body.presenting .site-footer{display:none;} body.presenting .speaker-note{display:none;} body.presenting .read-progress{display:none;} [hidden]{display:none!important;}
+    @media (max-width:1080px){.desktop-nav{gap:12px;}.desktop-nav a{font-size:.8rem;}.header-actions #printBtn{display:none;}.pillar-grid{grid-template-columns:repeat(3,1fr);} .hero-inner{gap:26px;} .visual-window{transform:rotate(1deg);} }
+    @media (max-width:840px){.container{width:min(100% - 40px,1160px);} .desktop-nav{display:none;} .mobile-toggle{display:inline-flex;} .mobile-nav{display:none;position:absolute;top:76px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--line);padding:17px 20px 23px;box-shadow:var(--shadow);} .mobile-nav.open{display:grid;gap:4px;} .mobile-nav a {padding:12px 15px;text-decoration:none;border-radius:10px;font-weight:790;color:var(--text);} .mobile-nav a:hover{background:var(--red-pale);color:var(--red);} .hero-inner{grid-template-columns:1fr;gap:50px;padding-block:74px;}.hero{min-height:0;}.hero h1{font-size:clamp(3.9rem,12vw,6.7rem);}.visual-window{max-width:560px;transform:rotate(0);}.two-col{grid-template-columns:1fr;}.quote-panel{min-height:250px;}.pillar-grid{grid-template-columns:repeat(2,1fr);}.practice-grid{grid-template-columns:repeat(2,1fr);}.quiz-grid{grid-template-columns:1fr;}.quiz-side{min-height:200px;}.speaker-plan{grid-template-columns:repeat(2,1fr);} body.presenting .hero-inner{gap:30px;} }
+    @media (max-width:610px){.container{width:calc(100% - 32px);} .site-header{height:68px;}.read-progress{top:68px;}.mobile-nav{top:68px;} .brand{font-size:1.05rem;}.brand small{display:none;}.brand-mark{width:35px;height:35px;}.header-row{gap:8px;}.header-actions{gap:5px;}.header-actions #presentBtn{padding:9px 10px;font-size:.76rem;}.icon-btn{min-height:39px;padding:8px 10px;}.theme-label{display:none;}.slide{padding:70px 0;scroll-margin-top:68px;}.section-heading{font-size:clamp(2rem,9vw,3.2rem);}.hero-inner{padding-block:63px 65px;}.hero h1{font-size:clamp(3.3rem,14vw,5.4rem);}.hero-description{font-size:1.02rem;}.hero-actions{flex-direction:column;align-items:stretch;max-width:360px;}.window-content{padding:20px;}.good-title{font-size:1.65rem;}.mini-stat-grid{grid-template-columns:1fr;}.mini-stat{padding:15px;}.pillar-grid,.practice-grid,.compare-grid,.errors-grid,.connection-grid,.speaker-plan,.footer-row{grid-template-columns:1fr;}.pillar{min-height:auto;}.pillar .number{margin-bottom:20px;}.card,.reading-path,.quiz-panel{padding:22px;}.access-art,.quiz-side{padding:23px;}.tier{padding:16px;gap:12px;}.tier .tier-number{width:35px;height:35px;}.final-panel{border-radius:22px;}.site-footer{padding-bottom:30px;}.footer-end{flex-direction:column;align-items:flex-start;}.deck-controls{bottom:10px;}.deck-controls button{padding:9px;min-width:42px;font-size:.82rem;} body.presenting main{height:calc(100dvh - 68px);} body.presenting .slide{height:calc(100dvh - 68px);padding:27px 0 95px;} body.presenting .hero-inner{padding-block:20px 80px;} body.presenting .hero h1{font-size:clamp(3.2rem,13vw,4.7rem);} body.presenting .site-header{height:68px;} }
+    @media (max-width:360px){.brand>span:last-child{display:none;}.brand-mark{width:35px;height:35px;}.header-actions #presentBtn{font-size:.73rem;padding:8px 10px;}}
+    #themeBtn svg:nth-of-type(2){display:none;} html[data-theme="dark"] #themeBtn svg:first-of-type{display:none;} html[data-theme="dark"] #themeBtn svg:nth-of-type(2){display:block;}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;} *,*::before,*::after{transition:none!important;animation:none!important;}}
+    @media print { @page{size:A4 landscape;margin:12mm;} :root,html[data-theme="dark"]{color-scheme:light;--bg:#fff;--bg-soft:#fff;--surface:#fff;--surface-alt:#fff5f5;--text:#24161a;--muted:#615059;--line:#dbc8ce;--red:#af1234;--red-dark:#811128;--red-pale:#fff1f3;--shadow:none;} body{background:#fff!important;color:#24161a!important;} .site-header,.site-footer,.deck-controls,.speaker-note,.read-progress,.quiz-next,.quiz-side,.hero-actions{display:none!important;} body.presenting{overflow:visible;} body.presenting main{height:auto;overflow:visible;} .slide,body.presenting .slide{display:block!important;height:auto!important;min-height:180mm!important;overflow:visible!important;padding:14mm 5mm!important;break-after:page;page-break-after:always;background:#fff!important;}.slide:last-child{break-after:auto;}.slide .container{width:100%!important;} .hero,body.presenting .hero{background:#811c39!important;color:#fff!important;min-height:180mm!important;} .hero-inner,body.presenting .hero-inner{grid-template-columns:1fr 1fr;padding:18mm 0!important;}.hero h1{font-size:55pt;}.visual-window{transform:none;}.section-heading{font-size:35pt;}.pillar-grid{grid-template-columns:repeat(5,1fr);}.practice-grid{grid-template-columns:repeat(3,1fr);}.pillar,.practice,.card,.compare-card,.access-item,.error-item,.speaker,.quiz-panel{box-shadow:none;break-inside:avoid;}.quiz-side{display:none!important;}.quiz-grid{grid-template-columns:1fr;}.final-panel,.quote-panel,.connection-band{print-color-adjust:exact;-webkit-print-color-adjust:exact;} }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#inicio" aria-label="Webwriting, ir para o início"><span class="brand-mark">W.</span><span>WEBWRITING <small>/ APRESENTAÇÃO</small></span></a>
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <a href="#conceito">Conceito</a><a href="#pilares">Pilares</a><a href="#praticas">Técnicas</a><a href="#exemplo">Exemplo</a><a href="#quiz">Atividade</a><a href="#conclusao">Conclusão</a>
+      </nav>
+      <div class="header-actions">
+        <button id="themeBtn" type="button" class="icon-btn" aria-label="Ativar modo escuro" aria-pressed="false" title="Alternar tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg><span class="theme-label">Escuro</span></button>
+        <button id="printBtn" class="icon-btn" type="button" title="Imprimir ou salvar como PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/></svg> PDF</button>
+        <button id="presentBtn" class="primary-btn" type="button" aria-pressed="false">Apresentar <span aria-hidden="true">↗</span></button>
+        <button id="menuBtn" class="icon-btn mobile-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Navegação móvel"><a href="#conceito">O que é?</a><a href="#leitura">Leitura digital</a><a href="#pilares">5 pilares</a><a href="#estrutura">Estrutura</a><a href="#praticas">Técnicas</a><a href="#exemplo">Antes e depois</a><a href="#acessibilidade">Acessibilidade</a><a href="#conexoes">Webwriting, SEO e UX</a><a href="#erros">Erros</a><a href="#quiz">Atividade</a><a href="#conclusao">Conclusão</a></nav>
+  </header>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <main id="conteudo">
+    <section id="inicio" class="slide hero" aria-labelledby="heroTitle">
+      <div class="container hero-inner">
+        <div>
+          <div class="hero-kicker"><span></span> Comunicação digital • apresentação em grupo</div>
+          <h1 id="heroTitle">Escrever<br>para <em>ser lido.</em></h1>
+          <p class="hero-description">Webwriting é a arte de transformar informação em conteúdo claro, útil e fácil de encontrar na internet.</p>
+          <div class="hero-actions"><a href="#conceito" class="primary-btn">Começar apresentação <span aria-hidden="true">→</span></a><button id="heroPresentBtn" class="secondary-btn" type="button">▶ Modo apresentação</button></div>
+          <p class="hero-note">Uma explicação simples, com exemplos, boas práticas e atividade para a turma.</p>
+        </div>
+        <div class="visual-window" aria-label="Exemplo ilustrativo de transformação de um título complicado em uma mensagem clara">
+          <div class="window-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="window-domain">conteudo.que.funciona</span></div>
+          <div class="window-content"><div class="window-tag">Antes: difícil de entender</div><p class="bad-title">Informações relativas aos procedimentos necessários para efetuar o processo de solicitação...</p><div class="change-arrow" aria-hidden="true">↓</div><div class="window-tag">Depois: direto ao ponto</div><p class="good-title">Como <strong>solicitar</strong> seu documento em 3 passos</p><p class="good-p">Veja o que levar, onde pedir e quanto tempo demora.</p><div class="pill-row"><span>Claro</span><span>Organizado</span><span>Útil</span></div></div>
+          <span class="visual-sticker">#MenosÉMais</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="conceito" class="slide" aria-labelledby="conceitoTitle">
+      <div class="container">
+        <p class="eyebrow">01 / Entenda o tema</p>
+        <h2 id="conceitoTitle" class="section-heading">Afinal, o que é <span class="accent">Webwriting?</span></h2>
+        <div class="two-col">
+          <div><p class="section-intro">É o conjunto de técnicas usadas para <strong>escrever e organizar conteúdos para ambientes digitais</strong>, como sites, blogs, lojas virtuais e aplicativos.</p><p class="muted">Não significa apenas escrever corretamente. Significa pensar em <strong>quem vai ler</strong>, <strong>o que essa pessoa procura</strong> e <strong>como facilitar o acesso à resposta</strong>.</p><div class="mini-stat-grid"><div class="mini-stat"><strong>Quem?</strong><span>O público</span></div><div class="mini-stat"><strong>O quê?</strong><span>A informação</span></div><div class="mini-stat"><strong>Como?</strong><span>Uma leitura simples</span></div></div></div>
+          <div class="quote-panel"><blockquote>Um bom conteúdo digital não faz o leitor procurar a resposta. Ele ajuda a encontrá-la.</blockquote><p>Ideia central do Webwriting</p></div>
+        </div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Explique que escrever para a web não é a mesma coisa que escrever uma redação tradicional. Na internet, a pessoa geralmente quer resolver uma dúvida ou realizar uma tarefa rapidamente.</p></details>
+      </div>
+    </section>
+
+    <section id="leitura" class="slide" aria-labelledby="leituraTitle">
+      <div class="container">
+        <p class="eyebrow">02 / O comportamento do leitor</p>
+        <h2 id="leituraTitle" class="section-heading">Na internet, a gente costuma <span class="accent">escanear antes de ler.</span></h2>
+        <div class="two-col">
+          <div><p class="section-intro">Ao abrir uma página, muitas pessoas procuram primeiro títulos, palavras destacadas, listas e respostas diretas.</p><div class="access-list"><div class="access-item"><span class="check-icon" aria-hidden="true">1</span><div><strong>Primeiro: olhar rapidamente</strong><span>“Essa página tem o que eu preciso?”</span></div></div><div class="access-item"><span class="check-icon" aria-hidden="true">2</span><div><strong>Depois: localizar a informação</strong><span>Títulos e destaques ajudam a encontrar o ponto certo.</span></div></div><div class="access-item"><span class="check-icon" aria-hidden="true">3</span><div><strong>Por fim: ler com atenção</strong><span>A pessoa aprofunda a leitura onde há interesse.</span></div></div></div></div>
+          <div class="reading-path"><span class="tiny-label">Ilustração: leitura por varredura</span><div class="mock-screen" style="margin-top:14px" aria-hidden="true"><div class="mock-line highlight"></div><div class="mock-line medium"></div><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-block"><div class="mock-line highlight" style="width:47%;height:12px"></div><div class="mock-line"></div><div class="mock-line medium"></div></div><div class="mock-line highlight" style="width:36%;height:12px"></div><div class="mock-line indent"></div><div class="mock-line medium"></div></div><div class="reading-foot"><span><b style="color:var(--red)">■</b> O olhar encontra pontos de destaque</span><span aria-hidden="true">↘</span></div></div>
+        </div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Peça que os colegas imaginem pesquisar “como recuperar a senha”. Eles procuram o botão ou os passos, não um texto longo sobre a história do sistema. Estudos de usabilidade da Nielsen Norman Group reforçam a importância de títulos e textos que possam ser examinados rapidamente.</p></details>
+      </div>
+    </section>
+
+    <section id="pilares" class="slide" aria-labelledby="pilaresTitle">
+      <div class="container">
+        <p class="eyebrow">03 / Fundamentos</p>
+        <h2 id="pilaresTitle" class="section-heading">Os <span class="accent">5 pilares</span> de uma boa escrita digital.</h2>
+        <p class="section-intro">Cinco princípios ajudam qualquer texto a ficar mais simples, útil e agradável de navegar.</p>
+        <div class="pillar-grid">
+          <article class="pillar"><span class="number">01</span><h3>Clareza</h3><p>Usar palavras simples e explicar termos difíceis.</p></article>
+          <article class="pillar"><span class="number">02</span><h3>Objetividade</h3><p>Chegar ao ponto sem rodeios desnecessários.</p></article>
+          <article class="pillar"><span class="number">03</span><h3>Leitura fácil</h3><p>Dividir o texto em blocos, títulos e listas.</p></article>
+          <article class="pillar"><span class="number">04</span><h3>Hierarquia</h3><p>Mostrar primeiro o que é mais importante.</p></article>
+          <article class="pillar"><span class="number">05</span><h3>Acessibilidade</h3><p>Escrever para diferentes pessoas e necessidades.</p></article>
+        </div>
+        <div class="example-note"><strong>Guarde esta ideia:</strong> Webwriting não é escrever o mínimo possível. É oferecer a quantidade de informação necessária, no formato mais fácil de entender.</div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Apresente os cinco pilares rapidamente e dê um exemplo de clareza: em vez de “efetuar o preenchimento”, prefira “preencher”. Na objetividade, lembre que textos longos podem ser necessários quando o assunto exige explicação.</p></details>
+      </div>
+    </section>
+
+    <section id="estrutura" class="slide" aria-labelledby="estruturaTitle">
+      <div class="container">
+        <p class="eyebrow">04 / Organização do conteúdo</p>
+        <h2 id="estruturaTitle" class="section-heading">Comece pelo <span class="accent">mais importante.</span></h2>
+        <div class="two-col">
+          <div><p class="section-intro">A técnica da <strong>pirâmide invertida</strong> coloca a informação essencial primeiro e deixa os detalhes complementares depois.</p><div class="example-note"><strong>Exemplo:</strong> em uma notícia sobre matrícula escolar, informe primeiro o prazo e como se inscrever. Depois explique documentos, regras e outras orientações.</div></div>
+          <div class="pyramid"><div class="tier"><span class="tier-number">1</span><div><strong>Resposta principal</strong><span>O que a pessoa precisa saber agora?</span></div></div><div class="tier"><span class="tier-number">2</span><div><strong>Informações de apoio</strong><span>Passos, datas, valores e orientações.</span></div></div><div class="tier"><span class="tier-number">3</span><div><strong>Detalhes extras</strong><span>Contexto, explicações e links relacionados.</span></div></div></div>
+        </div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Mostre que a pirâmide é uma forma de organizar informação, não uma regra rígida. Para tutoriais, por exemplo, o título e o resultado esperado vêm antes das instruções detalhadas.</p></details>
+      </div>
+    </section>
+
+    <section id="praticas" class="slide" aria-labelledby="praticasTitle">
+      <div class="container">
+        <p class="eyebrow">05 / Aplicação prática</p>
+        <h2 id="praticasTitle" class="section-heading">Técnicas que fazem a <span class="accent">diferença.</span></h2>
+        <p class="section-intro">Pequenos cuidados na escrita e na apresentação do conteúdo melhoram a experiência de leitura.</p>
+        <div class="practice-grid">
+          <article class="practice"><div class="practice-ico" aria-hidden="true">H</div><h3>Títulos que informam</h3><p>Prefira “Como pedir a segunda via” a “Informações importantes”.</p></article>
+          <article class="practice"><div class="practice-ico" aria-hidden="true">≡</div><h3>Parágrafos curtos</h3><p>Separe ideias. Isso facilita acompanhar o texto no celular.</p></article>
+          <article class="practice"><div class="practice-ico" aria-hidden="true">•</div><h3>Listas quando ajudam</h3><p>Use listas para etapas, documentos e recomendações.</p></article>
+          <article class="practice"><div class="practice-ico" aria-hidden="true">↗</div><h3>Links descritivos</h3><p>Escreva “Consultar calendário escolar” em vez de “Clique aqui”.</p></article>
+          <article class="practice"><div class="practice-ico" aria-hidden="true">Aa</div><h3>Linguagem natural</h3><p>Evite jargões e frases complicadas quando houver alternativa simples.</p></article>
+          <article class="practice"><div class="practice-ico" aria-hidden="true">✓</div><h3>Revisão antes de publicar</h3><p>Confira informações, datas, ortografia e se o texto realmente ajuda.</p></article>
+        </div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Explique que o texto precisa fazer sentido mesmo quando a pessoa lê só os títulos. Destaque também que links devem informar para onde levam e que listas não são obrigatórias em todo parágrafo.</p></details>
+      </div>
+    </section>
+
+    <section id="exemplo" class="slide" aria-labelledby="exemploTitle">
+      <div class="container">
+        <p class="eyebrow">06 / Antes e depois</p>
+        <h2 id="exemploTitle" class="section-heading">A mesma mensagem. <span class="accent">Dois jeitos de escrever.</span></h2>
+        <p class="section-intro">Imagine uma página de biblioteca que explica como renovar um livro.</p>
+        <div class="compare-grid">
+          <article class="compare-card compare-bad"><div class="compare-top"><i aria-hidden="true"></i> Antes: informação escondida</div><div class="compare-body"><h3>Informações acerca do procedimento de renovação</h3><p>Com o intuito de proporcionar uma melhor experiência aos usuários dos serviços prestados pela unidade de atendimento bibliotecário, comunicamos que a solicitação referente ao prolongamento do período de empréstimo de obras poderá ser efetuada por meio de procedimento eletrônico disponível no ambiente virtual institucional, condicionado à observância dos critérios aplicáveis.</p></div></article>
+          <article class="compare-card compare-good"><div class="compare-top"><i aria-hidden="true"></i> Depois: informação clara</div><div class="compare-body"><h3>Como renovar um livro da biblioteca</h3><p>Você pode pedir a renovação pela internet, desde que o livro esteja disponível para renovar.</p><ol><li>Entre na sua conta da biblioteca.</li><li>Abra a lista de empréstimos.</li><li>Selecione <strong>Renovar livro</strong>.</li></ol><p>Se a opção não aparecer, procure o atendimento da biblioteca.</p><a href="#praticas" class="compare-cta">Rever técnicas de escrita</a></div></article>
+        </div>
+        <p class="compare-takeaway"><b>O que mudou?</b> O segundo exemplo diz logo o que pode ser feito, utiliza título específico, passos organizados e linguagem direta. O conteúdo é ilustrativo.</p>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Leia só as primeiras frases dos dois textos e pergunte qual delas responde mais rápido à dúvida do estudante. Este é o momento ideal para envolver a turma.</p></details>
+      </div>
+    </section>
+
+    <section id="acessibilidade" class="slide" aria-labelledby="acessibilidadeTitle">
+      <div class="container">
+        <p class="eyebrow">07 / Inclusão digital</p>
+        <h2 id="acessibilidadeTitle" class="section-heading">Um texto bom também precisa ser <span class="accent">acessível.</span></h2>
+        <div class="two-col">
+          <div class="access-list"><div class="access-item"><span class="check-icon" aria-hidden="true">✓</span><div><strong>Use títulos em uma ordem lógica</strong><span>Organize as seções para facilitar a leitura e a navegação por tecnologias assistivas.</span></div></div><div class="access-item"><span class="check-icon" aria-hidden="true">✓</span><div><strong>Escreva links que façam sentido</strong><span>“Baixar formulário de matrícula” explica melhor que “Saiba mais”.</span></div></div><div class="access-item"><span class="check-icon" aria-hidden="true">✓</span><div><strong>Descreva imagens informativas</strong><span>Textos alternativos ajudam a comunicar informações a quem não vê a imagem.</span></div></div><div class="access-item"><span class="check-icon" aria-hidden="true">✓</span><div><strong>Prefira palavras comuns e bom contraste</strong><span>Frases compreensíveis e texto legível beneficiam públicos diferentes.</span></div></div></div>
+          <div class="access-art"><div class="label">Uma mensagem acessível</div><div class="fake-h">Entenda antes.<br><span>Encontre rápido.</span></div><p>Informação bem organizada ajuda pessoas que usam celular, leitores de tela, ampliação de texto ou que simplesmente estão com pressa.</p><p><a href="https://www.w3.org/WAI/tips/writing/" target="_blank" rel="noopener noreferrer">Ver orientações de escrita acessível do W3C ↗</a></p><p class="helper">Acessibilidade não depende só da escrita: o código, o visual e a interação também importam.</p></div>
+        </div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Explique que acessibilidade não é um “extra”. Um título bem organizado ajuda tanto alguém que utiliza leitor de tela quanto quem está procurando uma resposta rapidamente.</p></details>
+      </div>
+    </section>
+
+    <section id="conexoes" class="slide" aria-labelledby="conexoesTitle">
+      <div class="container">
+        <p class="eyebrow">08 / Assuntos relacionados</p>
+        <h2 id="conexoesTitle" class="section-heading">Webwriting, SEO e UX: <span class="accent">qual é a diferença?</span></h2>
+        <p class="section-intro">Os três conceitos se complementam, mas não significam a mesma coisa.</p>
+        <div class="connection-grid"><article class="connection-card"><span class="tiny-label">Conteúdo</span><h3>Webwriting</h3><p>Cuida de <strong>como a informação é escrita e organizada</strong> para facilitar a compreensão.</p><small>Pergunta: “Está fácil de entender?”</small></article><article class="connection-card"><span class="tiny-label">Descoberta</span><h3>SEO</h3><p>Reúne práticas para <strong>ajudar buscadores a descobrir e compreender</strong> o conteúdo.</p><small>Pergunta: “O conteúdo pode ser encontrado?”</small></article><article class="connection-card"><span class="tiny-label">Experiência</span><h3>UX</h3><p>É a experiência de uso: <strong>como a pessoa navega e realiza tarefas</strong> no produto digital.</p><small>Pergunta: “É simples de usar?”</small></article></div>
+        <div class="connection-band">Um site de qualidade combina informação clara + boa experiência + facilidade para ser encontrado.</div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Dê o exemplo de um tutorial: Webwriting organiza os passos; SEO pode ajudar a pessoa a encontrar a página; UX trata da facilidade de navegar, clicar e concluir o que precisa. Nenhum deles garante sozinho bons resultados.</p></details>
+      </div>
+    </section>
+
+    <section id="erros" class="slide" aria-labelledby="errosTitle">
+      <div class="container">
+        <p class="eyebrow">09 / Atenção aos detalhes</p>
+        <h2 id="errosTitle" class="section-heading">Erros comuns que vale <span class="accent">evitar.</span></h2>
+        <div class="errors-grid"><div class="error-item"><span class="error-icon" aria-hidden="true">×</span><div><strong>Textos enormes sem divisões</strong><p>Quebre em partes lógicas com subtítulos quando necessário.</p></div></div><div class="error-item"><span class="error-icon" aria-hidden="true">×</span><div><strong>Títulos vagos</strong><p>Troque “Atenção!” por uma informação clara sobre o assunto.</p></div></div><div class="error-item"><span class="error-icon" aria-hidden="true">×</span><div><strong>Termos técnicos sem explicação</strong><p>Explique siglas e palavras que podem ser desconhecidas.</p></div></div><div class="error-item"><span class="error-icon" aria-hidden="true">×</span><div><strong>Informação essencial no final</strong><p>Comece com a resposta mais importante para o leitor.</p></div></div><div class="error-item"><span class="error-icon" aria-hidden="true">×</span><div><strong>Links “clique aqui” sem contexto</strong><p>Deixe claro o destino ou a ação do link.</p></div></div><div class="error-item"><span class="error-icon" aria-hidden="true">×</span><div><strong>Excesso de palavras-chave</strong><p>Não repita termos só para tentar aparecer nas buscas.</p></div></div></div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Mostre que cada erro tem uma correção simples. Convide a turma a escolher qual deles encontra com mais frequência em sites e aplicativos.</p></details>
+      </div>
+    </section>
+
+    <section id="quiz" class="slide" aria-labelledby="quizTitle">
+      <div class="container">
+        <p class="eyebrow">10 / Momento interativo</p>
+        <h2 id="quizTitle" class="section-heading">Vamos ver o que <span class="accent">aprendemos?</span></h2>
+        <p class="section-intro">Três perguntas rápidas para envolver a turma. Basta escolher uma resposta.</p>
+        <div class="quiz-grid">
+          <div class="quiz-panel" id="quizPanel"><div class="quiz-top"><span id="quizStep">Pergunta 1 de 3</span><span id="quizScore">0 acertos</span></div><div class="quiz-track" aria-hidden="true"><i id="quizFill"></i></div><div id="quizQuestionBlock"><h3 id="quizQuestion">Qual título ajuda mais o leitor a encontrar uma informação?</h3><div id="quizOptions" class="quiz-options"><button type="button" class="quiz-option">Informações importantes</button><button type="button" class="quiz-option">Como solicitar a segunda via do documento</button><button type="button" class="quiz-option">Atenção aos procedimentos</button></div><p class="quiz-feedback" id="quizFeedback" role="status" aria-live="polite">Escolha uma opção para ver a explicação.</p><button id="quizNext" class="primary-btn quiz-next" type="button" hidden>Próxima pergunta →</button></div><div id="quizResult" class="quiz-result" role="status" aria-live="polite"><strong id="quizFinalScore">3/3</strong><h3 id="quizFinalTitle">Muito bem!</h3><p id="quizFinalText" class="muted">Você concluiu a atividade.</p><button id="quizRestart" class="primary-btn" type="button">Refazer atividade ↻</button></div></div>
+          <aside class="quiz-side"><div><div class="symbol" aria-hidden="true">?</div><h3>Aprender também é participar.</h3><p>Uma atividade curta pode ajudar a fixar o conteúdo e estimular a discussão em sala.</p></div><small>Sem cadastro · Respostas explicadas · Funciona offline</small></aside>
+        </div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Antes de clicar na resposta, peça que a turma escolha em voz alta. Depois, leia a explicação e faça a próxima pergunta. O resultado serve para revisar, não para atribuir notas.</p></details>
+      </div>
+    </section>
+
+    <section id="conclusao" class="slide" aria-labelledby="conclusaoTitle">
+      <div class="container">
+        <div class="final-panel"><p class="eyebrow">11 / Para finalizar</p><h2 id="conclusaoTitle">Escrever bem para a web é <span style="color:#ffc0cd">facilitar a vida de quem lê.</span></h2><p>Webwriting une clareza, organização, utilidade e acessibilidade. Quando o conteúdo respeita o tempo e as necessidades das pessoas, a comunicação funciona melhor.</p><div class="closing-tags"><span>Clareza</span><span>Objetividade</span><span>Leitura fácil</span><span>Hierarquia</span><span>Inclusão</span></div><a href="#inicio" class="primary-btn">Voltar ao início ↑</a></div>
+        <p class="eyebrow" style="margin-top:43px">Sugestão de divisão para o grupo</p><div class="speaker-plan"><div class="speaker"><small>Integrante 1</small><strong>Introdução + conceito</strong><p>Apresenta o tema e por que ele importa.</p></div><div class="speaker"><small>Integrante 2</small><strong>Pilares + estrutura</strong><p>Explica as principais técnicas.</p></div><div class="speaker"><small>Integrante 3</small><strong>Exemplos + acessibilidade</strong><p>Compara os textos e conecta as ideias.</p></div><div class="speaker"><small>Integrante 4</small><strong>Erros + atividade + conclusão</strong><p>Conduz o quiz e encerra a apresentação.</p></div></div>
+        <details class="speaker-note"><summary>Roteiro de fala para quem apresentar</summary><p>Finalize com uma frase simples: “O melhor texto para a internet não é o mais complicado; é o que ajuda alguém a entender ou fazer alguma coisa”. Ajustem a divisão conforme a quantidade de integrantes.</p></details>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container"><div class="footer-row"><div><h2>Webwriting / Apresentação</h2><p>Material educativo desenvolvido para apresentação em sala de aula. Texto acessível, visual responsivo e exemplos ilustrativos.</p></div><div><h2>Para saber mais</h2><div class="sources"><a href="https://www.nngroup.com/articles/how-people-read-online/" target="_blank" rel="noopener noreferrer">Nielsen Norman Group — Como as pessoas leem online ↗</a><a href="https://www.w3.org/WAI/tips/writing/" target="_blank" rel="noopener noreferrer">W3C / WAI — Escrita para acessibilidade na web ↗</a><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=pt-br" target="_blank" rel="noopener noreferrer">Google Search Central — Conteúdo útil e centrado nas pessoas ↗</a></div></div></div><div class="footer-end"><span>© Material de estudo · Webwriting</span><span>Feito em HTML + CSS + JavaScript · Pronto para GitHub Pages</span></div></div></footer>
+  <div class="deck-controls" id="deckControls" aria-label="Controles da apresentação"><button id="deckPrev" type="button" aria-label="Slide anterior">← Anterior</button><span class="deck-counter" id="deckCounter" aria-live="polite">01 / 12</span><button id="deckNext" type="button" aria-label="Próximo slide">Próximo →</button><button id="deckExit" type="button" aria-label="Sair do modo apresentação" title="Sair do modo apresentação">✕</button></div>
+  <script>
+    (() => {
+      'use strict';
+      const $ = (selector) => document.querySelector(selector);
+      const $$ = (selector) => [...document.querySelectorAll(selector)];
+      const html = document.documentElement;
+      const themeBtn = $('#themeBtn');
+      const themeLabel = themeBtn.querySelector('.theme-label');
+      const slides = $$('#conteudo > .slide');
+      const presentBtn = $('#presentBtn');
+      const menuBtn = $('#menuBtn');
+      const mobileNav = $('#mobileNav');
+      const deckCounter = $('#deckCounter');
+      const prevBtn = $('#deckPrev');
+      const nextBtn = $('#deckNext');
+      let presenting = false;
+      let activeSlide = 0;
+      let previousFocus = null;
+
+      function storedTheme() {try {return localStorage.getItem('webwriting-theme');} catch {return null;}}
+      function setStoredTheme(value) {try {localStorage.setItem('webwriting-theme', value);} catch {}}
+      function setTheme(theme) {
+        html.dataset.theme = theme;
+        const dark = theme === 'dark';
+        themeBtn.setAttribute('aria-pressed', String(dark));
+        themeBtn.setAttribute('aria-label', dark ? 'Ativar modo claro' : 'Ativar modo escuro');
+        themeLabel.textContent = dark ? 'Claro' : 'Escuro';
+        const meta = $('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', dark ? '#120e12' : '#fff9f8');
+      }
+      const pref = storedTheme();
+      setTheme(pref === 'dark' || pref === 'light' ? pref : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+      themeBtn.addEventListener('click', () => {const next = html.dataset.theme === 'dark' ? 'light' : 'dark'; setTheme(next); setStoredTheme(next);});
+
+      function setMenu(open) {
+        mobileNav.classList.toggle('open', open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+      }
+      menuBtn.addEventListener('click', () => setMenu(!mobileNav.classList.contains('open')));
+      mobileNav.addEventListener('click', event => {if (event.target.closest('a')) setMenu(false);});
+      document.addEventListener('click', event => {if (!event.target.closest('.site-header')) setMenu(false);});
+      window.addEventListener('resize', () => {if (window.innerWidth > 840) setMenu(false);});
+
+      function updateDeck() {
+        slides.forEach((slide, index) => {slide.hidden = presenting && index !== activeSlide;});
+        if (presenting) {
+          const current = slides[activeSlide];
+          current.scrollTop = 0;
+          deckCounter.textContent = `${String(activeSlide+1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;
+          prevBtn.disabled = activeSlide === 0;
+          nextBtn.disabled = activeSlide === slides.length-1;
+          nextBtn.textContent = activeSlide === slides.length-1 ? 'Fim' : 'Próximo →';
+          window.scrollTo(0,0);
+        }
+      }
+      function goSlide(index) {if (!presenting) return; activeSlide = Math.max(0, Math.min(slides.length-1, index)); updateDeck();}
+      function setPresent(on, startAt = 0) {
+        if (on === presenting) return;
+        presenting = on;
+        if (on) {
+          previousFocus = document.activeElement;
+          activeSlide = startAt;
+          setMenu(false);
+          document.body.classList.add('presenting');
+          presentBtn.setAttribute('aria-pressed','true');
+          presentBtn.textContent = 'Sair ✕';
+          updateDeck();
+          nextBtn.focus({preventScroll:true});
+        } else {
+          document.body.classList.remove('presenting');
+          presentBtn.setAttribute('aria-pressed','false');
+          presentBtn.innerHTML = 'Apresentar <span aria-hidden="true">↗</span>';
+          updateDeck();
+          requestAnimationFrame(() => {
+            if (previousFocus && previousFocus.isConnected && !previousFocus.closest('[hidden]')) previousFocus.focus({preventScroll:true});
+            else presentBtn.focus({preventScroll:true});
+          });
+        }
+      }
+      presentBtn.addEventListener('click', () => setPresent(!presenting, 0));
+      $('#heroPresentBtn').addEventListener('click', () => setPresent(true, 0));
+      $('#deckExit').addEventListener('click', () => setPresent(false));
+      prevBtn.addEventListener('click', () => goSlide(activeSlide-1));
+      nextBtn.addEventListener('click', () => goSlide(activeSlide+1));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {if (presenting) setPresent(false); else setMenu(false); return;}
+        if (!presenting || event.altKey || event.ctrlKey || event.metaKey || ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
+        if (['ArrowRight','PageDown'].includes(event.key)) {event.preventDefault();goSlide(activeSlide+1);}
+        if (['ArrowLeft','PageUp'].includes(event.key)) {event.preventDefault();goSlide(activeSlide-1);}
+        if (event.key === 'Home') {event.preventDefault();goSlide(0);}
+        if (event.key === 'End') {event.preventDefault();goSlide(slides.length-1);}
+      });
+      document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', event => {
+        if (!presenting) return;
+        const dest = document.getElementById(link.getAttribute('href').slice(1));
+        if (!dest) return;
+        const index = slides.findIndex(slide => slide === dest || slide.contains(dest));
+        if (index >= 0) {event.preventDefault();goSlide(index);}
+      }));
+      $('#printBtn').addEventListener('click', () => {if (presenting) setPresent(false); window.print();});
+
+      const progress = $('#readProgress');
+      let ticking = false;
+      function updateScrollProgress() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = `${max <= 0 ? 100 : Math.min(100,Math.max(0,window.scrollY/max*100))}%`;
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => {if (!ticking) {ticking = true;requestAnimationFrame(updateScrollProgress);}}, {passive:true});
+      window.addEventListener('resize', updateScrollProgress); updateScrollProgress();
+      if ('IntersectionObserver' in window) {
+        const navLinks = $$('.desktop-nav a');
+        const observer = new IntersectionObserver(entries => {
+          if (presenting) return;
+          const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
+          if (!visible) return;
+          navLinks.forEach(link => {if (link.getAttribute('href') === `#${visible.target.id}`) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current');});
+        }, {rootMargin:'-20% 0px -55% 0px',threshold:[0,.1,.4]});
+        slides.forEach(slide => observer.observe(slide));
+      }
+
+      const questions = [
+        {q:'Qual título ajuda mais o leitor a encontrar uma informação?',options:['Informações importantes','Como solicitar a segunda via do documento','Atenção aos procedimentos'],answer:1,why:'Um título específico diz qual tarefa a página ajuda a realizar.'},
+        {q:'Qual organização costuma facilitar a leitura de uma página?',options:['Um único parágrafo muito longo','Informação principal no fim','Títulos, blocos curtos e listas quando úteis'],answer:2,why:'Uma estrutura clara permite localizar os assuntos sem ler tudo de uma vez.'},
+        {q:'O que é mais importante no Webwriting?',options:['Escrever para as necessidades das pessoas','Repetir a mesma palavra muitas vezes','Usar palavras difíceis para impressionar'],answer:0,why:'O objetivo é entregar conteúdo útil e compreensível para o público.'}
+      ];
+      let currentQuestion = 0, correctAnswers = 0, answered = false;
+      const quizQuestion = $('#quizQuestion');
+      const quizOptions = $('#quizOptions');
+      const quizFeedback = $('#quizFeedback');
+      const quizNext = $('#quizNext');
+      function renderQuestion() {
+        answered = false;
+        const q = questions[currentQuestion];
+        $('#quizStep').textContent = `Pergunta ${currentQuestion+1} de ${questions.length}`;
+        $('#quizScore').textContent = `${correctAnswers} ${correctAnswers===1?'acerto':'acertos'}`;
+        $('#quizFill').style.width = `${((currentQuestion+1)/questions.length)*100}%`;
+        quizQuestion.textContent = q.q;
+        quizOptions.replaceChildren();
+        q.options.forEach((label,index) => {
+          const option = document.createElement('button');
+          option.type = 'button';option.className = 'quiz-option';option.textContent = label;
+          option.addEventListener('click', () => answerQuestion(index));
+          quizOptions.appendChild(option);
+        });
+        quizFeedback.textContent = 'Escolha uma opção para ver a explicação.';
+        quizNext.hidden = true;
+        quizNext.textContent = currentQuestion === questions.length-1 ? 'Ver resultado →' : 'Próxima pergunta →';
+      }
+      function answerQuestion(selected) {
+        if (answered) return;
+        answered = true;
+        const question = questions[currentQuestion];
+        const correct = selected === question.answer;
+        if (correct) correctAnswers++;
+        $$('#quizOptions .quiz-option').forEach((button,index) => {
+          button.disabled = true;
+          if (index === question.answer) button.classList.add('correct');
+          else if (index === selected) button.classList.add('wrong');
+        });
+        quizFeedback.textContent = `${correct ? '✓ Correto!' : 'Não foi dessa vez.'} ${question.why}`;
+        $('#quizScore').textContent = `${correctAnswers} ${correctAnswers===1?'acerto':'acertos'}`;
+        quizNext.hidden = false;
+      }
+      function renderResult() {
+        $('#quizQuestionBlock').hidden = true;
+        const result = $('#quizResult');result.classList.add('show');
+        $('#quizStep').textContent = 'Atividade concluída';
+        $('#quizFinalScore').textContent = `${correctAnswers}/${questions.length}`;
+        $('#quizFinalTitle').textContent = correctAnswers===questions.length ? 'Excelente! Você entendeu o tema.' : 'Boa participação! Vamos revisar?';
+        $('#quizFinalText').textContent = correctAnswers===questions.length ? 'Você reconheceu as boas práticas de escrita para a web.' : 'As explicações do site ajudam a revisar as respostas. Experimente novamente!';
+        $('#quizRestart').focus({preventScroll:true});
+      }
+      quizNext.addEventListener('click', () => {if (currentQuestion < questions.length-1) {currentQuestion++;renderQuestion();quizQuestion.setAttribute('tabindex','-1');quizQuestion.focus({preventScroll:true});} else renderResult();});
+      $('#quizRestart').addEventListener('click', () => {currentQuestion=0;correctAnswers=0;$('#quizResult').classList.remove('show');$('#quizQuestionBlock').hidden=false;renderQuestion();quizQuestion.focus({preventScroll:true});});
+      renderQuestion();
+    })();
+  </script>
+</body>
+</html>
